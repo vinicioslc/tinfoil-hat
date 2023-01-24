@@ -1,12 +1,12 @@
 version: '3'
 services:
   app:
+    container_name: tinfoil-hat
     build: .
-    hostname: tinfoil-hat-node
-    image: tinfoil-hat-node:latest
+    image: tinfoil-hat:latest
+    hostname: tinfoil-hat
     environment:
       - DEBUG=*
-    container_name: tinfoil-hat-node
     ports:
       # Change to any port of your machine (7878 in that case) (dont change the :80 !!!)
       - 7878:80

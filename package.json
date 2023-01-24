@@ -1,5 +1,5 @@
 {
-  "name": "tinfoil-hat-node",
+  "name": "tinfoil-hat",
   "version": "1.0.0",
   "description": "Tinfoil Nodejs Server",
   "main": "index.js",

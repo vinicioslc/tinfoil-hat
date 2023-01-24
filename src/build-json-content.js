@@ -5,7 +5,7 @@ const JSON5 = require("json5");
 
 const { nspFullDirPath, jsonTemplatePath } = require("../envs");
 const FastGlob = require("fast-glob");
-const console = require("../debug");
+const debug = require("../debug");
 
 const valid_ext = [".nsp", ".nsz", ".xci", ".zip"].map((value) => "**" + value);
 //  Shop template file to use
@@ -38,8 +38,8 @@ module.exports = async () => {
     onlyDirectories: true,
     absolute: false, // absolute path
   });
-  console.log("total game/save files found:", files.length);
-  console.log("total directories found:", directories.length);
+  debug.log("total game/save files found:", files.length);
+  debug.log("total directories found:", directories.length);
   return Object.assign(jsonTemplate, {
     files: await Promise.all(
       files.map(addRelativeStartPath).map(addFileInfoToPath)

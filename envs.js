@@ -11,5 +11,5 @@ const jsonTemplatePath = path.resolve(
 );
 exports.jsonTemplatePath = jsonTemplatePath; // default json template path
 
-const appPort = process?.env?.PORT ?? "80"; // default listen port
+const appPort = process?.env?.TINFOIL_HAT_PORT ?? "80"; // default listen port
 exports.appPort = appPort;

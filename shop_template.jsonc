@@ -1,10 +1,10 @@
 {
     // Mandatory fields
     "files": {},
-    "directories": []
+    "directories": [],
 
     // You can specify a message to be presented to the user by setting either the "success" or "error" json key.
-    // "success": "hello world",
+    "success": "Server Just Works !!",
 
     // If serving the index over http, you may specify a referrer to prevent others from hotlinking using the "referrer" json key.
     // "referrer": "http://mydomain.com/index.tfl",

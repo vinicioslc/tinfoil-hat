@@ -21,7 +21,6 @@ expressApp.use(express.static(path.join(nspFullDirPath)));
 expressApp.use(serveIndex(nspFullDirPath, { icons: true, hidden: true }));
 
 const server = expressApp.listen(appPort, function () {
-  console.log("debugLog");
-  debugLog("server is running at %s", server.address().port);
-  debugLog("serving files into %s", nspFullDirPath);
+  debugLog("TinfoilHat Hearing at: %s", server.address().port);
+  debugLog("Folder being served: %s", nspFullDirPath);
 });
