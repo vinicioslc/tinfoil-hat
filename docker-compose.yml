@@ -1,0 +1,18 @@
+version: '3'
+services:
+  app:
+    build: .
+    hostname: tinfoil-hat-node
+    image: tinfoil-hat-node:latest
+    environment:
+      - DEBUG=*
+    container_name: tinfoil-hat-node
+    ports:
+      # Change to any port of your machine (7878 in that case) (dont change the :80 !!!)
+      - 7878:80
+      # you can now access on your browser http://localhost:7878 and see your games
+    volumes:
+      # path to your custom shop_template.jsonc used to show message on success or add authentication
+      - ./shop_template.jsonc:/shop_template.jsonc
+      # path to your directory with games
+      - c:/Users/vinic/Downloads/FDM/Switch/:/games/

@@ -1,0 +1,26 @@
+{
+  "name": "tinfoil-hat-node",
+  "version": "1.0.0",
+  "description": "Tinfoil Nodejs Server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon node ."
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "debug": "^4.3.4",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-static": "^1.2.6",
+    "fast-glob": "^3.2.12",
+    "json5": "^2.2.3",
+    "serve-index": "^1.9.1",
+    "supports-color": "^9.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
