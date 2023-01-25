@@ -1,21 +1,24 @@
 FROM node:19-alpine3.16
 
-ENV APP_DIR=/
+LABEL com.centurylinklabs.watchtower.enable=true
 ENV DEBUG=tinfoil*
 ENV ROMS_DIR_FULLPATH=/games
 ENV TINFOIL_HAT_PORT=80
 
-# Create the app directory
-RUN mkdir -p ${APP_DIR}
+# The container will run at root level of container
+# to avoid long syntax when mounting /games folder
+
+# Create the games directory
+RUN mkdir -p /games
 
 # Copy the package.json and package-lock.json
-COPY package*.json ${APP_DIR}/
+COPY package*.json /
 # Install the app dependencies
-WORKDIR ${APP_DIR}
+WORKDIR /
 RUN npm install --production
 
 # Copy the application code
-COPY . ${APP_DIR}
+COPY . /
 
 # Expose the app TINFOIL_HAT_PORT
 EXPOSE ${TINFOIL_HAT_PORT}

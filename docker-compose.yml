@@ -9,10 +9,30 @@ services:
       - DEBUG=*
     ports:
       # Change to any port of your machine (7878 in that case) (dont change the :80 !!!)
-      - 7878:80
+      - 9009:80
       # you can now access on your browser http://localhost:7878 and see your games
     volumes:
       # path to your custom shop_template.jsonc used to show message on success or add authentication
       - ./shop_template.jsonc:/shop_template.jsonc
       # path to your directory with games
       - c:/Users/vinic/Downloads/FDM/Switch/:/games/
+  # to enable auto update of tinfoil-hat container
+  watchtower:
+    image: containrrr/watchtower:latest
+    volumes:
+      # get
+      - /var/run/docker.sock:/var/run/docker.sock
+      # get machine localtime
+      - /etc/localtime:/etc/localtime
+    command: --debug --http-api-update
+    environment:
+      # put your timezone here
+      - TZ=America/Sao_Paulo
+      - WATCHTOWER_HTTP_API_TOKEN=mytoken
+      - WATCHTOWER_LABEL_ENABLE=true
+      - WATCHTOWER_POLL_INTERVAL=120
+      - WATCHTOWER_ROLLING_RESTART=true
+    labels:
+      com.centurylinklabs.watchtower.enable: false
+    ports:
+      - 9008:8080

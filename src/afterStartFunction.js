@@ -3,10 +3,11 @@ import debug from "./debug.js";
 import { nspFullDirPath } from "./envs.js";
 import { publicIp, publicIpv4, publicIpv6 } from "public-ip";
 import buildJsonContent from "./build-json-content.js";
+import pkg from "./package.js";
 
 function afterStartFunction(appPort) {
   return async function () {
-    debug.log("------------------ TinfoilHat Started ------------------");
+    debug.log(`------------------ TinfoilHat Started v${pkg.version} ------------------`)
     try {
       debug.log(
         "TinfoilHat Hearing at local-ip:",

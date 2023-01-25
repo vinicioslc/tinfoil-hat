@@ -47,10 +47,10 @@ export default function fileDirName(meta) {
   return { __dirname, __filename };
 }
 export {
-  fileDirName,
   addUrlEncodedFileInfo,
   addFileInfoToPath,
-  getJsonTemplateFile,
   addRelativeStartPath,
+  getJsonTemplateFile,
+  fileDirName,
   createIfNoExists,
 };
