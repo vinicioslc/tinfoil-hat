@@ -18,7 +18,17 @@ const expressApp = express();
 expressApp.use(shopFileBuilder);
 
 expressApp.use(express.static(path.join(nspFullDirPath)));
-expressApp.use(serveIndex(nspFullDirPath, { icons: true, hidden: true }));
+expressApp.use(
+  serveIndex(nspFullDirPath, {
+    icons: true,
+    hidden: true,
+    // should ignore games folders only showing index files
+    // to avoid bug with not listing when have many games
+    filter: (filename, index, files) => {
+      return filename.includes("shop");
+    },
+  })
+);
 
 const server = expressApp.listen(appPort, function () {
   debugLog("TinfoilHat Hearing at: %s", server.address().port);

@@ -31,6 +31,6 @@ services:
 2. Serve web interface to navigate like on PHP apache servers
 3. Serve dynamically shop.json and shop.tfl as you place new games and files
 
-## Limitations
+## TO-DO
 
-When has more than 574 (whole nsp,xci,zip...) files, the TINFOIL app stop listing all games
+- [  ] Download torrent files from magnet link

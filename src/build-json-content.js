@@ -6,8 +6,9 @@ const JSON5 = require("json5");
 const { nspFullDirPath, jsonTemplatePath } = require("../envs");
 const FastGlob = require("fast-glob");
 const debug = require("../debug");
+const { urlencoded } = require("express");
 
-const valid_ext = [".nsp", ".nsz", ".xci", ".zip"].map((value) => "**" + value);
+const valid_ext = [".nsp", ".nsz"].map((value) => "**" + value);
 //  Shop template file to use
 const getJsonTemplateFile = () =>
   JSON5.parse(fs.readFileSync(jsonTemplatePath));
@@ -17,9 +18,14 @@ const addRelativeStartPath = (path) => {
 
 const addFileInfoToPath = async (filePath) => {
   const status = fs.statSync(
-    path.join(nspFullDirPath, filePath.replace(/^\.\.\//gim, ""))
+    path.join(nspFullDirPath, decodeURI(filePath).replace(/^\.\.\//gim, ""))
   );
   return { url: filePath, size: status.size };
+};
+
+const addUrlEncodedFileInfo = (filePath) => {
+  filePath = encodeURI(filePath);
+  return filePath;
 };
 module.exports = async () => {
   const jsonTemplate = getJsonTemplateFile();
@@ -42,8 +48,13 @@ module.exports = async () => {
   debug.log("total directories found:", directories.length);
   return Object.assign(jsonTemplate, {
     files: await Promise.all(
-      files.map(addRelativeStartPath).map(addFileInfoToPath)
+      files
+        .map(addRelativeStartPath)
+        .map(addUrlEncodedFileInfo)
+        .map(addFileInfoToPath)
     ),
-    directories: directories.map(addRelativeStartPath),
+    directories: directories
+      .map(addRelativeStartPath)
+      .map(addUrlEncodedFileInfo),
   });
 };
