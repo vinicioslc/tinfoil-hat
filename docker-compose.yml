@@ -1,6 +1,9 @@
 version: '3'
 services:
   tinfoil-hat:
+    labels:
+      # same scop used by watchtower to self update image
+      - "com.centurylinklabs.watchtower.scope=tinfoilhat"
     container_name: tinfoil-hat
     build: .
     image: vinicioslc/tinfoil-hat:latest
@@ -17,7 +20,7 @@ services:
       # path to your directory with games
       - c:/Users/vinic/Downloads/FDM/Switch/:/games/
   # to enable auto update of tinfoil-hat container
-  watchtower:
+  tinfoilhat-updater:
     image: containrrr/watchtower:latest
     volumes:
       # get
@@ -29,9 +32,9 @@ services:
       # put your timezone here
       - TZ=America/Sao_Paulo
       - WATCHTOWER_HTTP_API_TOKEN=mytoken
-      - WATCHTOWER_LABEL_ENABLE=true
       - WATCHTOWER_POLL_INTERVAL=120
       - WATCHTOWER_ROLLING_RESTART=true
+      - WATCHTOWER_SCOPE=tinfoilhat
     labels:
       com.centurylinklabs.watchtower.enable: false
     ports:

@@ -9,20 +9,46 @@ With this thing Tinfoilers can serve all your NSP files in local network from a 
 ```yml
 version: "3"
 services:
-  app:
-    hostname: tinfoil-hat
+  tinfoil-hat:
+    labels:
+      # same scop used by watchtower to self update image
+      - "com.centurylinklabs.watchtower.scope=tinfoilhat"
+    container_name: tinfoil-hat
+    build: .
     image: vinicioslc/tinfoil-hat:latest
     environment:
+      # show all debug information on server logs (http info and more)
       - DEBUG=*
+      # only show tinfoil information
+      # - DEBUG=tinfoil-hat
     ports:
-      # Change to any port of your machine (7878 in that case) (dont change the :80 !!!)
-      - 7878:80
-      # you can now access on your browser http://localhost:7878 and see your games
+      # Change to any port of your machine (9009 in that case) (dont change the :80 !!!)
+      - 9009:80
+      # you can now access on your browser http://localhost:9009 and see your games
     volumes:
       # path to your custom shop_template.jsonc used to show message on success or add authentication
       # - ./shop_template.jsonc:/shop_template.jsonc
-      # path to your directory with games
-      - c:/switch/titles:/games/
+      # mount your path to a directory with nsp,xci ...
+      - /switch/games/:/games/
+  # to enable auto update tinfoil-hat container
+  tinfoil-hat-updater:
+    image: containrrr/watchtower:latest
+    volumes:
+      # get docker socket
+      - /var/run/docker.sock:/var/run/docker.sock
+      # get machine localtime
+      - /etc/localtime:/etc/localtime
+    command: --debug --http-api-update
+    environment:
+      # put your timezone here
+      - TZ=America/Sao_Paulo
+      - WATCHTOWER_POLL_INTERVAL=60
+      - WATCHTOWER_ROLLING_RESTART=true
+      - WATCHTOWER_SCOPE=tinfoilhat
+    labels:
+      com.centurylinklabs.watchtower.enable: false
+    ports:
+      - 9008:8080
 ```
 
 ## Workflow
@@ -33,4 +59,5 @@ services:
 
 ## TO-DO
 
-- [  ] Download torrent files from magnet link
+- [ ] Add gui to override and customize TITLEID info on server
+- [ ] Allow download torrent files from magnet link
