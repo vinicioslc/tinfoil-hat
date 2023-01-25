@@ -1,6 +1,6 @@
 # 📂 Tinfoil-Hat
 
-Your Tinfoil static files served locally
+Your NSP, XCI and other nintendo files served locally
 
 With this thing Tinfoilers can serve all your NSP files in local network from a old computer
 
