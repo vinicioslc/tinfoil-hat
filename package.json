@@ -8,7 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node --experimental-modules index.js",
     "dev": "env DEBUG=tinfoil* nodemon node --experimental-modules ./src/index.js ",
-    "d:publish": "docker build . && docker tag tinfoil-hat:latest vinicioslc/tinfoil-hat:latest && docker push vinicioslc/tinfoil-hat:latest"
+    "d:publish:no:cache": "docker build --pull --no-cache --tag vinicioslc/tinfoil-hat:latest . && docker push vinicioslc/tinfoil-hat",
+    "d:publish": "docker build . && docker tag tinfoil-hat:latest vinicioslc/tinfoil-hat && docker push vinicioslc/tinfoil-hat"
   },
   "author": "",
   "license": "ISC",
