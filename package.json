@@ -1,17 +1,17 @@
 {
   "name": "tinfoil-hat",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Tinfoil Nodejs Server",
-  "main": "src/index.js",
+  "main": "./src/index.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node --experimental-modules index.js",
+    "start": "node --experimental-modules ./src/index.js",
     "dev": "env DEBUG=tinfoil* nodemon node --experimental-modules ./src/index.js ",
     "d:publish:no:cache": "docker build --pull --no-cache --tag vinicioslc/tinfoil-hat:latest . && docker push vinicioslc/tinfoil-hat",
     "d:publish": "docker build . && docker tag tinfoil-hat:latest vinicioslc/tinfoil-hat && docker push vinicioslc/tinfoil-hat"
   },
-  "author": "",
+  "author": "vinicioslc",
   "license": "ISC",
   "dependencies": {
     "debug": "^4.3.4",
