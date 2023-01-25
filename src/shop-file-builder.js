@@ -4,15 +4,15 @@
  *
  */
 
-const debug = require("../debug");
-const buildJsonContent = require("./build-json-content");
+import debug from "./debug.js";
+import buildJsonContent from "./build-json-content.js";
 
 /**
  * @param  {import("express").Request} req
  * @param  {import("express").Response} res
  * @param  {import("express").NextFunction} next
  */
-module.exports = async (req, res, next) => {
+export default async (req, res, next) => {
   if (req.path === "/shop.json") {
     debug.http("IN-> %o", req.path);
     res.header("Content-Type", "application/json");

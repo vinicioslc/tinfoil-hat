@@ -1,42 +1,33 @@
-const fs = require("fs");
-const fastGlob = require("fast-glob");
-const path = require("path");
-const JSON5 = require("json5");
+import path from "path";
+import FastGlob from "fast-glob";
 
-const { nspFullDirPath, jsonTemplatePath } = require("../envs");
-const FastGlob = require("fast-glob");
-const debug = require("../debug");
-const { urlencoded } = require("express");
+import debug from "./debug.js";
+import { nspFullDirPath } from "./envs.js";
+import {
+  addFileInfoToPath,
+  addRelativeStartPath,
+  addUrlEncodedFileInfo,
+  getJsonTemplateFile,
+  createIfNoExists,
+} from "./helpers.js";
 
-const valid_ext = [".nsp", ".nsz"].map((value) => "**" + value);
-//  Shop template file to use
-const getJsonTemplateFile = () =>
-  JSON5.parse(fs.readFileSync(jsonTemplatePath));
-const addRelativeStartPath = (path) => {
-  return "../" + path;
-};
+const valid_ext = [".nsp", ".nsz", ".xci", ".zip"].map((value) => "**" + value);
 
-const addFileInfoToPath = async (filePath) => {
-  const status = fs.statSync(
-    path.join(nspFullDirPath, decodeURI(filePath).replace(/^\.\.\//gim, ""))
-  );
-  return { url: filePath, size: status.size };
-};
-
-const addUrlEncodedFileInfo = (filePath) => {
-  filePath = encodeURI(filePath);
-  return filePath;
-};
-module.exports = async () => {
+export default async () => {
+  // create files info to be showned by the file index package
+  try {
+    await createIfNoExists(path.join(nspFullDirPath, "shop.json"));
+    await createIfNoExists(path.join(nspFullDirPath, "shop.tfl"));
+  } catch (error) {}
   const jsonTemplate = getJsonTemplateFile();
-  files = await FastGlob(valid_ext, {
+  let files = await FastGlob(valid_ext, {
     cwd: nspFullDirPath, // use path to resolve games
     dot: false, // ignore dot starting path
     onlyFiles: true, // only list files
     braceExpansion: false,
     absolute: false, // absolute path
   });
-  directories = await FastGlob(["**"], {
+  let directories = await FastGlob(["**"], {
     cwd: nspFullDirPath, // use path to resolve games
     dot: false, // ignore dot starting path
     onlyFiles: true, // only list files

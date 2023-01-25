@@ -1,12 +1,13 @@
 {
   "name": "tinfoil-hat",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "Tinfoil Nodejs Server",
-  "main": "index.js",
+  "main": "src/index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "dev": "nodemon node ."
+    "dev": "env DEBUG=tinfoil* nodemon node --experimental-modules ./src/index.js "
   },
   "author": "",
   "license": "ISC",
@@ -17,10 +18,20 @@
     "express-static": "^1.2.6",
     "fast-glob": "^3.2.12",
     "json5": "^2.2.3",
+    "local-ip-address": "^1.0.0",
+    "public-ip": "^6.0.1",
     "serve-index": "^1.9.1",
     "supports-color": "^9.3.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vinicioslc/tinfoil-hat.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vinicioslc/tinfoil-hat/issues"
+  },
+  "homepage": "https://github.com/vinicioslc/tinfoil-hat#readme"
 }

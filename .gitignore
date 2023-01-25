@@ -131,3 +131,6 @@ dist
 
 # TINFOIL
 /games/**
+
+#mantain gitkeep folders
+!.gitkeep
