@@ -1,9 +1,9 @@
 version: '3'
 services:
-  app:
+  tinfoil-hat:
     container_name: tinfoil-hat
     build: .
-    image: tinfoil-hat:latest
+    image: vinicioslc/tinfoil-hat:latest
     hostname: tinfoil-hat
     environment:
       - DEBUG=*
