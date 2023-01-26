@@ -43,9 +43,9 @@ services:
       # only show tinfoil information
       # - DEBUG=tinfoil-hat
     ports:
-      # Change to any port of your machine (9009 in that case) (dont change the :80 !!!)
-      - 9009:80
-      # you can now access on your browser http://localhost:9009 and see your games
+      # Change to any port of your machine (99 in that case) (dont change the :80 !!!)
+      - 99:80
+      # you can now access on your browser http://localhost:99/shop.json and see your games
     volumes:
       # path to your custom shop_template.jsonc used to show message on success or add authentication
       # - ./shop_template.jsonc:/shop_template.jsonc
