@@ -2,12 +2,30 @@
 
 Your NSP, XCI and other game files served locally
 
-With this server tool Tinfoilers can serve all your .NSP .XCI files in local network with docker
+With this server Tinfoilers can serve all .NSP .XCI files in local network with docker easily without file count limits !
 
 ![giphy tinfoilers saying "we dont even understand how to play this game"](https://media.giphy.com/media/3o6Zt4uuhvA0qmUIgg/giphy.gif)
 
-# docker-compose.yml that auto updates
+## FAQ
 
+- Why isn't showing all folders ? only showing shop.json and shop.tfl at home index ?
+
+  R: To avoid a bug when tinfoil get shop.tfl link, when tinfoil list too many folders on html index page (example 100 folders) Tinfoil can't traverse all html and reach shop.tfl file 
+
+## What it uses ?
+
+- express |  Serve Dynamically shop(.json|.tfl) with updated content at every refresh
+- express-static |  Serve all game files statically making possible download
+- serve-index |  To serve a rich listing of files (in case only shop.json shop.tfl for tinfoil)
+- json5 | To parse custom shop_template.jsonc (you can define on it custom content like a welcome message)
+
+## How works
+
+1. Serve all games files and path statically 
+2. Serve web index to navigate like on PHP apache servers
+3. Serve dynamically shop.json and shop.tfl as you place new games and files (fetch files and folders at every request)
+
+# Example from a server runing with docker-compose.yml
 ```yml
 version: "3"
 services:
@@ -53,13 +71,7 @@ services:
       - 9008:8080
 ```
 
-## Workflow
+## We want but we can't
 
-1. Serve all files statically inside path
-2. Serve web interface to navigate like on PHP apache servers
-3. Serve dynamically shop.json and shop.tfl as you place new games and files
-
-## TO-DO
-
-- [ ] Add gui to override and customize TITLEID info on server
+- [ ] Have a gui to override and customize TITLEID info on server-side json db
 - [ ] Allow download torrent files from magnet link
