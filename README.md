@@ -8,9 +8,10 @@ With this server Tinfoilers can serve all .NSP .XCI files in local network with 
 
 ## FAQ
 
-- Why isn't showing all folders ? only showing shop.json and shop.tfl at home index ?
+- Q: Why isn't showing all folders ? only showing shop.json and shop.tfl at home index ?
 
-  R: To avoid a bug when tinfoil get shop.tfl link, when tinfoil list too many folders on html index page (example 100 folders) Tinfoil can't traverse all html and reach shop.tfl file 
+  R: To avoid a TINFOIL when it gets the `shop.tfl` url. When TINFOIL see too many folders on files index, home page (ex.: 100 folders links) TINFOIL can't traverse all html and reach `shop.tfl` file 
+![image](https://user-images.githubusercontent.com/10997022/214861654-b24aeab7-0e18-40ab-932b-9293ce4579b0.png)
 
 ## What it uses ?
 
