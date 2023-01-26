@@ -81,6 +81,6 @@ services:
 
 #### setup connection
 ![image](https://user-images.githubusercontent.com/10997022/214877049-8d369eb5-7440-4b22-9763-96da1c277f41.png)
-#### when find server
+#### when find server (save and restart tinfoil app)
 ![image](https://user-images.githubusercontent.com/10997022/214877143-e5a67dd8-939c-4a37-8763-619c1fa0b0d5.png)
 
