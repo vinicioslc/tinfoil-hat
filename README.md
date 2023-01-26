@@ -76,3 +76,11 @@ services:
 
 - [ ] Have a gui to override and customize TITLEID info on server-side json db
 - [ ] Allow download torrent files from magnet link
+
+## Images with Tinfoil
+
+#### setup connection
+![image](https://user-images.githubusercontent.com/10997022/214877049-8d369eb5-7440-4b22-9763-96da1c277f41.png)
+#### when find server
+![image](https://user-images.githubusercontent.com/10997022/214877143-e5a67dd8-939c-4a37-8763-619c1fa0b0d5.png)
+
