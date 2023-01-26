@@ -1,10 +1,12 @@
-# 📂 Tinfoil-Hat
+# 📂 Tinfoil-Hat Docker Tinfoil Server
 
 Your NSP, XCI and other game files served locally
 
-With this thing Tinfoilers can serve all your NSP files in local network from a old computer
+With this server tool Tinfoilers can serve all your .NSP .XCI files in local network with docker
 
-# Docker-compose for CasaOS
+![giphy tinfoilers saying "we dont even understand how to play this game"](https://media.giphy.com/media/3o6Zt4uuhvA0qmUIgg/giphy.gif)
+
+# docker-compose.yml that auto updates
 
 ```yml
 version: "3"
