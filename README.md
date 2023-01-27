@@ -90,8 +90,8 @@ services:
       - 9008:8080
 ```
 
-## We want but we can't
-
+## We want
+- [ ] Organize and rename app listing by GAMEID
 - [ ] Have a gui to override and customize TITLEID info on server-side json db
 - [ ] Allow download torrent files from magnet link
 
