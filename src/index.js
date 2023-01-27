@@ -1,12 +1,24 @@
 import express from "express";
 import serveIndex from "serve-index";
 import path from "path";
+import expressBasicAuth from "express-basic-auth";
 import shopFileBuilder from "./shop-file-builder.js";
-import { nspFullDirPath, appPort } from "./envs.js";
+import { nspFullDirPath, appPort, unauthorizedMessage } from "./envs.js";
 import { afterStartFunction } from "./afterStartFunction.js";
+import { getUsersFromEnv } from "./authUsersParser.js";
 
 const expressApp = express();
 // Serve static files and interface
+const BasicAuthUsers = getUsersFromEnv();
+if (BasicAuthUsers) {
+  expressApp.use(
+    expressBasicAuth({
+      users: BasicAuthUsers,
+      unauthorizedResponse: unauthorizedMessage,
+      challenge: true
+    })
+  );
+}
 
 expressApp.use(shopFileBuilder);
 

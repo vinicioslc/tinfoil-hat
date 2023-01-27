@@ -5,7 +5,7 @@
  */
 
 import debug from "./debug.js";
-import buildJsonContent from "./build-json-content.js";
+import generateIndex from "./create-index-content.js";
 
 /**
  * @param  {import("express").Request} req
@@ -16,13 +16,13 @@ export default async (req, res, next) => {
   if (req.path === "/shop.json") {
     debug.http("IN-> %o", req.path);
     res.header("Content-Type", "application/json");
-    res.status(200).send(await buildJsonContent());
+    res.status(200).send(await generateIndex());
     debug.http("OUT-< %o", req.path);
     return;
   } else if (req.path === "/shop.tfl") {
     debug.http("IN-> %o", req.path);
     res.header("Content-Type", "application/octet-stream");
-    res.status(200).send(await buildJsonContent());
+    res.status(200).send(await generateIndex());
     debug.http("OUT-< %o", req.path);
     return;
   } else {

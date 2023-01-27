@@ -14,8 +14,18 @@ const jsonTemplatePath = path.resolve(
     path.join(fileDirName(import.meta).__dirname, "../shop_template.jsonc")
 );
 const appPort = process?.env?.TINFOIL_HAT_PORT ?? "80"; // default listen port
+
+const authUsers = process?.env?.AUTH_USERS ?? null; // default listen port
+const unauthorizedMessage =
+  process?.env?.UNAUTHORIZED_MSG ?? "No tricks and treats for you!!";
+const welcomeMessage =
+  process?.env?.WELCOME_MSG ?? null;
+
 export {
   nspFullDirPath,
   jsonTemplatePath, // default json template path
   appPort,
+  authUsers,
+  unauthorizedMessage,
+  welcomeMessage,
 };

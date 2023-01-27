@@ -1,8 +1,8 @@
 import localIpAddress from "local-ip-address";
 import debug from "./debug.js";
 import { nspFullDirPath } from "./envs.js";
-import { publicIp, publicIpv4, publicIpv6 } from "public-ip";
-import buildJsonContent from "./build-json-content.js";
+import { publicIpv4 } from "public-ip";
+import buildJsonContent from "./create-index-content.js";
 import pkg from "./package.js";
 
 function afterStartFunction(appPort) {

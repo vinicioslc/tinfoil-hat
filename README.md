@@ -6,27 +6,41 @@ With this server Tinfoilers can serve all .NSP .XCI files in local network with 
 
 ![giphy tinfoilers saying "we dont even understand how to play this game"](https://media.giphy.com/media/3o6Zt4uuhvA0qmUIgg/giphy.gif)
 
+<div align="center">
+ <br>
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/K3K424BR8)
+
+</div>
+
+### Key Features
+  - Instant index refresh (no need waiting refresh interval, just put games into folder and reload window)
+  - Authentication through user:pass list string provided on Envs
+
 ## FAQ
 
-- Q: Why isn't showing all folders ? only showing shop.json and shop.tfl at home index ?
+- Q: Has Authentication ?
 
-  R: To avoid a TINFOIL strange BUG when lists `shop.tfl` url. Basically when TINFOIL see too many folders on files index, home page (ex.: 100 folders links) TINFOIL can't traverse all html and reach `shop.tfl` file 
-![image](https://user-images.githubusercontent.com/10997022/214861654-b24aeab7-0e18-40ab-932b-9293ce4579b0.png)
+> R: Yes, you can thought AUTH_USERS env explained more at [`docker-compose.yml`](#docker-compose-sample-using-password) sample, (this block access to `/shop.json` on browser too)
 
-## What it uses ?
+```bash
+  # before starts the server it shows which users has login credentials
+  tinfoil-hat Auth Users Loaded: 'admin,other' +0ms
+  tinfoil-hat ------------------ TinfoilHat Started v1.1.0 ------------------ +5ms
+```
 
-- express |  Serve Dynamically shop(.json|.tfl) with updated content at every refresh
-- express-static |  Serve all game files statically making possible download
-- serve-index |  To serve a rich listing of files (in case only shop.json shop.tfl for tinfoil)
-- json5 | To parse custom shop_template.jsonc (you can define on it custom content like a welcome message)
+- Q: Why isn't showing all folders ? only showing `shop.json` and `shop.tfl` at home index ?
+
+> R: To avoid a TINFOIL strange BUG when lists `shop.tfl` url. Basically when TINFOIL see too many folders on files index, home page (ex.: 100 folders links) TINFOIL can't traverse all html and reach `shop.tfl` file
 
 ## How works
 
-1. Serve all games files and path statically 
+1. Serve all games files and path statically
 2. Serve web index to navigate like on PHP apache servers
 3. Serve dynamically shop.json and shop.tfl as you place new games and files (fetch files and folders at every request)
 
-# Example from a server runing with docker-compose.yml
+# Docker-Compose Sample Using Password
+
 ```yml
 version: "3"
 services:
@@ -40,8 +54,12 @@ services:
     environment:
       # show all debug information on server logs (http info and more)
       - DEBUG=*
-      # only show tinfoil information
+      # only show tinfoil-hat information on logs
       # - DEBUG=tinfoil-hat
+      # users list authorized to access tinfoil-hat user and password separated by ":" and users separated by "," <your-user>:<your-pass>
+      AUTH_USERS=tinfoiler:password,othertinfoiler:otherpassword
+      UNAUTHORIZED_MSG='No tricks and treats for you!!'
+      WELCOME_MSG='The Server Just Works!!'
     ports:
       # Change to any port of your machine (99 in that case) (dont change the :80 !!!)
       - 99:80
@@ -80,7 +98,15 @@ services:
 ## Images with Tinfoil
 
 #### setup connection
+
 ![image](https://user-images.githubusercontent.com/10997022/214877049-8d369eb5-7440-4b22-9763-96da1c277f41.png)
+
 #### when find server (save and restart tinfoil app)
+
 ![image](https://user-images.githubusercontent.com/10997022/214877143-e5a67dd8-939c-4a37-8763-619c1fa0b0d5.png)
 
+## Which Tech Stack ?
+
+- `express` | Serve Dynamically shop(.json|.tfl) with updated content at every refresh and serve files statically
+- `serve-index` | To serve a rich listing of files (in case only shop.json shop.tfl for tinfoil)
+- `json5` | To parse custom shop_template.jsonc (you can define on it custom content like a welcome message !!!)

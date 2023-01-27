@@ -1,3 +1,4 @@
+version: '3'
 services:
   tinfoil-hat:
     labels:
@@ -9,10 +10,16 @@ services:
     hostname: tinfoil-hat
     environment:
       - DEBUG=*
+      # users list authorized to access tinfoil-hat
+      # user and password separated by ":" and users separated by ","
+      # <your-user>:<your-pass>,<another-user>:<another-pass> (this blocks browser access too)
+      # - AUTH_USERS=admin:123
+      - UNAUTHORIZED_MSG='No tricks and treats for you!!'
+      - WELCOME_MSG='The Server Just Works!!'
     ports:
-      # Change to any port of your machine (7878 in that case) (dont change the :80 !!!)
-      - 9009:80
-      # you can now access on your browser http://localhost:7878 and see your games
+      # Change to any port of your machine (99 in that case) (dont change the :80 !!!)
+      - 99:80
+      # you can now access on your browser http://localhost:99 and see your games
     volumes:
       # path to your custom shop_template.jsonc used to show message on success or add authentication
       - ./shop_template.jsonc:/shop_template.jsonc
@@ -24,17 +31,11 @@ services:
     volumes:
       # get
       - /var/run/docker.sock:/var/run/docker.sock
-      # get machine localtime
-      - /etc/localtime:/etc/localtime
     command: --debug --http-api-update
     environment:
       # put your timezone here
-      - TZ=America/Sao_Paulo
-      - WATCHTOWER_HTTP_API_TOKEN=mytoken
       - WATCHTOWER_POLL_INTERVAL=120
       - WATCHTOWER_ROLLING_RESTART=true
       - WATCHTOWER_SCOPE=tinfoilhat
     labels:
       com.centurylinklabs.watchtower.enable: false
-    ports:
-      - 9008:8080

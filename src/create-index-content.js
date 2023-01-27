@@ -2,7 +2,7 @@ import path from "path";
 import FastGlob from "fast-glob";
 
 import debug from "./debug.js";
-import { nspFullDirPath } from "./envs.js";
+import { nspFullDirPath, welcomeMessage } from "./envs.js";
 import {
   addFileInfoToPath,
   addRelativeStartPath,
@@ -37,6 +37,13 @@ export default async () => {
   });
   debug.log("total game/save files found:", files.length);
   debug.log("total directories found:", directories.length);
+
+  if (welcomeMessage) {
+    if (!jsonTemplate.success) {
+      jsonTemplate.success = welcomeMessage
+    }
+  }
+
   return Object.assign(jsonTemplate, {
     files: await Promise.all(
       files
