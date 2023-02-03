@@ -57,9 +57,9 @@ services:
       # only show tinfoil-hat information on logs
       # - DEBUG=tinfoil-hat
       # users list authorized to access tinfoil-hat user and password separated by ":" and users separated by "," <your-user>:<your-pass>
-      AUTH_USERS=tinfoiler:password,othertinfoiler:otherpassword
-      UNAUTHORIZED_MSG='No tricks and treats for you!!'
-      WELCOME_MSG='The Server Just Works!!'
+      - AUTH_USERS=tinfoiler:password,othertinfoiler:otherpassword
+      - UNAUTHORIZED_MSG='No tricks and treats for you!!'
+      - WELCOME_MSG='The Server Just Works!!'
     ports:
       # Change to any port of your machine (99 in that case) (dont change the :80 !!!)
       - 99:80
@@ -90,8 +90,8 @@ services:
       - 9008:8080
 ```
 
-## We want but we can't
-
+## We want
+- [ ] Organize and rename app listing by GAMEID
 - [ ] Have a gui to override and customize TITLEID info on server-side json db
 - [ ] Allow download torrent files from magnet link
 
