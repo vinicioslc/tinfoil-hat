@@ -5,6 +5,9 @@ import path from "path";
 import JSON5 from "json5";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
+import urlencode from "urlencode";
+import url from "url";
+
 import { nspFullDirPath, jsonTemplatePath } from "./envs.js";
 import debug from "./debug.js";
 
@@ -14,25 +17,45 @@ const createIfNoExists = async (fileNamePath) => {
   try {
     // try to read file
     await readFile(fileNamePath);
-    debug.file("index file already exists: %o", fileNamePath);
   } catch (error) {
     // create empty file, because it wasn't found
-    debug.file("created: %o", fileNamePath);
+    debug.file("created index file: %o", fileNamePath);
     await writeFile(fileNamePath, "");
   }
 };
 
 const addRelativeStartPath = (path) => {
-  return "../" + path;
+  path.url = "../" + path.url;
+  return path;
 };
 
+/**
+ *  This function remove special characters that could affect tinfoil listings
+ *
+ * @param {any} value
+ * @returns
+ */
+function stringNormalizer(value) {
+  const replacer = [
+    [/\[/gim, "%5B"],
+    [/\]/gim, "%5D"],
+    [/\(/gim, "%28"],
+    [/\)/gim, "%29"],
+  ];
+  if (!value) return value;
+  for (const replace of replacer) {
+    value = value.replace(replace[0], replace[1]);
+  }
+  return value;
+}
 const addUrlEncodedFileInfo = (filePath) => {
-  filePath = encodeURI(filePath);
+  const toReturn = stringNormalizer(url.parse(filePath.url).path);
+  filePath.url = toReturn;
   return filePath;
 };
 const addFileInfoToPath = async (filePath) => {
   const status = fs.statSync(
-    path.join(nspFullDirPath, decodeURI(filePath).replace(/^\.\.\//gim, ""))
+    path.join(nspFullDirPath, filePath.replace(/^\.\.\//gim, ""))
   );
   return { url: filePath, size: status.size };
 }; //  Shop template file to use

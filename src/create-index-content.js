@@ -6,12 +6,15 @@ import { nspFullDirPath, welcomeMessage } from "./envs.js";
 import {
   addFileInfoToPath,
   addRelativeStartPath,
-  addUrlEncodedFileInfo,
+  addUrlEncodedFileInfo as encodeFilePath,
   getJsonTemplateFile,
   createIfNoExists,
+  addUrlEncodedFileInfo as encodeURL,
 } from "./helpers.js";
 
-const valid_ext = [".nsp", ".nsz", ".xci", ".zip"].map((value) => "**" + value);
+const validExtensions = ["nsp", "nsz", "xci", "zip"].map(
+  (value) => `**.${value.replace(".", "")}`
+);
 
 export default async () => {
   // create files info to be showned by the file index package
@@ -20,7 +23,7 @@ export default async () => {
     await createIfNoExists(path.join(nspFullDirPath, "shop.tfl"));
   } catch (error) {}
   const jsonTemplate = getJsonTemplateFile();
-  let files = await FastGlob(valid_ext, {
+  let files = await FastGlob(validExtensions, {
     cwd: nspFullDirPath, // use path to resolve games
     dot: false, // ignore dot starting path
     onlyFiles: true, // only list files
@@ -40,19 +43,22 @@ export default async () => {
 
   if (welcomeMessage) {
     if (!jsonTemplate.success) {
-      jsonTemplate.success = welcomeMessage
+      jsonTemplate.success = welcomeMessage;
     }
   }
+  files = (await Promise.all(files.map(addFileInfoToPath)))
+    .map(encodeURL)
+    .map(addRelativeStartPath);
+
+  directories = directories
+    .map((file) => {
+      return { url: file };
+    })
+    .map(encodeURL)
+    .map(addRelativeStartPath);
 
   return Object.assign(jsonTemplate, {
-    files: await Promise.all(
-      files
-        .map(addRelativeStartPath)
-        .map(addUrlEncodedFileInfo)
-        .map(addFileInfoToPath)
-    ),
-    directories: directories
-      .map(addRelativeStartPath)
-      .map(addUrlEncodedFileInfo),
+    files,
+    directories,
   });
 };
