@@ -55,7 +55,10 @@ export default async () => {
       return { url: file };
     })
     .map(encodeURL)
-    .map(addRelativeStartPath);
+    .map(addRelativeStartPath)
+    .map((file) => {
+      return file.url;
+    });
 
   return Object.assign(jsonTemplate, {
     files,
