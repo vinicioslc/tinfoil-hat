@@ -41,11 +41,20 @@ function stringNormalizer(value) {
     [/\]/gim, "%5D"],
     [/\(/gim, "%28"],
     [/\)/gim, "%29"],
+    [/\=/gim, "%3D"],
+    [/\+/gim, "%2B"],
+    [/\,/gim, "%2C"],
+    [/\;/gim, "%3B"],
+    [/\//gim, "%2F"],
+    [/\\/gim, "%5C"],
   ];
+
   if (!value) return value;
+
   for (const replace of replacer) {
     value = value.replace(replace[0], replace[1]);
   }
+
   return value;
 }
 const addUrlEncodedFileInfo = (filePath) => {
