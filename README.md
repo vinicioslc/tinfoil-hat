@@ -16,6 +16,8 @@ With this server Tinfoilers can serve all .NSP .XCI files in local network with 
 ### Key Features
   - Instant index refresh (no need waiting refresh interval, just put games into folder and reload window)
   - Authentication through user:pass list string provided on Envs
+  - 96% More RAM free, than NUT oficial option in some cases !!
+![image](https://user-images.githubusercontent.com/10997022/218286171-fbd4e5b3-94e3-438f-badb-788c1f55af76.png)
 
 ## FAQ
 
