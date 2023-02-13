@@ -38,9 +38,7 @@ With this server Tinfoilers can serve all .NSP .XCI files in local network with 
 
 ## How works
 
-1. Serve all games files and path statically
-2. Serve web index to navigate like on PHP apache servers
-3. Serve dynamically shop.json and shop.tfl as you place new games and files (fetch files and folders at every request)
+- Serve shop.json(for user check) and shop.tfl(for tinfoil) dynamically as you place new games and files on foilder (search files and folders at every refresh) this ensures a realtime Tinfoil listing files (you need reopen tinfoil to fully refresh index) 
 
 # Docker-Compose Sample Using Password
 
