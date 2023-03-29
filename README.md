@@ -1,14 +1,15 @@
 # 📂 Tinfoil-Hat Server
 > A Docker based Tinfoil Server - you could download code and `npm run dev` as well...
-Your NSP, XCI and other game files served locally
 
-With this server Tinfoilers can serve all .NSP .XCI files in local network with docker easily without file count limits !
+## - Your NSP, XCI and other game files served locally
+
+With this server Tinfoil users can serve all .NSP .XCI files in local network with docker easily without file count limits !
  
 ### Key Features
   - Instant index refresh (no need waiting refresh interval, just put games into folder and reload window)
-  - Multi user Authentication through user:pass string provided on ENVs
+  - Multi user Authentication through user:pass,user2:pass2 ENV supplied as docker env
   - Customize Hello message and not logged in message throught ENVs 
-  - 96% less RAM consumption, compared to the NUT solution !!! (in our use cases)
+  - 96% less RAM consumption, compared to the NUT solution !!! (in some cases see below!)
 <div align="center">
  <br>
 
