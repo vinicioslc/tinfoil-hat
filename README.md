@@ -1,5 +1,5 @@
-# 📂 Tinfoil-Hat Docker Tinfoil Server
-
+# 📂 Tinfoil-Hat Server
+> A Docker based Tinfoil Server - you could download code and `npm run dev` as well...
 Your NSP, XCI and other game files served locally
 
 With this server Tinfoilers can serve all .NSP .XCI files in local network with docker easily without file count limits !
