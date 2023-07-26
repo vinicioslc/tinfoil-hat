@@ -1,0 +1,9 @@
+{
+  "cSpell.words": [
+    "axum",
+    "tokio"
+  ],
+  "rust-analyzer.linkedProjects": [
+    "./rust/Cargo.toml"
+  ]
+}

@@ -1,7 +1,7 @@
 {
     // Mandatory fields
     "files": {},
-    "directories": []
+    "directories": [],
 
     // You can specify a message to be presented to the user by setting either the "success" or "error" json key.
     // "success": "Server Just Works !!",
@@ -20,7 +20,7 @@
     // "headers": ["My-Custom_header: hello", "My-Custom_header2: world"]
 
     // You can specify a minimum Tinfoil version to load the index using the "version" json key.
-    // "version": 7.00
+    "version": 7.00
 
     // You may specify a client certificate using "clientCertPub" and "clientCertKey" json keys.
     // "clientCertPub": "-----BEGIN PUBLIC KEY----- ....",

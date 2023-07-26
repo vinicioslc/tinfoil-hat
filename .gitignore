@@ -134,3 +134,6 @@ dist
 
 #mantain gitkeep folders
 !.gitkeep
+rust/target/*
+rust/games/**
+!rust/games/.gitkeep
