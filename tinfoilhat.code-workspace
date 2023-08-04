@@ -1,0 +1,30 @@
+{
+  "folders": [
+    {
+      "path": "rust"
+    },
+    {
+      "path": "."
+    }
+  ],
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Run Server Debug",
+        "type": "lldb",
+        "request": "launch",
+        "cargo": {
+          "args": [
+            "build",
+            "--manifest-path",
+            "${fileDirname}/rust/Cargo.toml"
+          ]
+        },
+        "args": [],
+        "cwd": "${fileDirname}/rust"
+      },
+    ],
+    "compounds": []
+  },
+}
