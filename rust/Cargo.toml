@@ -7,9 +7,13 @@ edition = "2021"
 
 [dependencies]
 axum = "0.6.19"
+axum-extra = "0.7.7"
 glob = "0.3.1"
 json5 = "0.4.1"
 serde_json = "1.0.103"
 thiserror = "1.0.44"
 tokio = { version = "1.29.1", features = ["full"] }
-tower = { version = "0.4.13", features = ["timeout"] }
+tower = { version = "0.4.13", features = ["timeout", "util"] }
+tower-http = { version = "0.4.0", features = ["fs", "trace"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }

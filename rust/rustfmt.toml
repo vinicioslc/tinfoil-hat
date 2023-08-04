@@ -3,4 +3,4 @@
 # https://github.com/rust-lang/rustfmt/blob/master/Configurations.md
 
 edition = "2021"
-tab_spaces = 2
+tab_spaces = 4
