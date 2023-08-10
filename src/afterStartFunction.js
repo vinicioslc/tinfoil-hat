@@ -1,6 +1,6 @@
 import localIpAddress from "local-ip-address";
 import debug from "./debug.js";
-import { nspFullDirPath } from "./envs.js";
+import { romsDirPath } from "./envs.js";
 import { publicIpv4 } from "public-ip";
 import buildJsonContent from "./create-index-content.js";
 import pkg from "./package.js";
@@ -33,7 +33,7 @@ function afterStartFunction(appPort) {
       debug.error("error games data");
       debug.error(err);
     }
-    debug.log("Folder path served: %s", nspFullDirPath);
+    debug.log("Folder path served: %s", romsDirPath);
   };
 }
 export { afterStartFunction };

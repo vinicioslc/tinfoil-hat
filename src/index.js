@@ -3,7 +3,7 @@ import serveIndex from "serve-index";
 import path from "path";
 import expressBasicAuth from "express-basic-auth";
 import shopFileBuilder from "./shop-file-builder.js";
-import { nspFullDirPath, appPort, unauthorizedMessage } from "./envs.js";
+import { romsDirPath, appPort, unauthorizedMessage } from "./envs.js";
 import { afterStartFunction } from "./afterStartFunction.js";
 import { getUsersFromEnv } from "./authUsersParser.js";
 
@@ -22,9 +22,9 @@ if (BasicAuthUsers) {
 
 expressApp.use(shopFileBuilder);
 
-expressApp.use(express.static(path.join(nspFullDirPath)));
+expressApp.use(express.static(path.join(romsDirPath)));
 expressApp.use(
-  serveIndex(nspFullDirPath, {
+  serveIndex(romsDirPath, {
     icons: true,
     hidden: true,
     // should ignore games folders only showing index files

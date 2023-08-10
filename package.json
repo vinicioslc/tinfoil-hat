@@ -5,9 +5,10 @@
   "main": "./src/index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node --experimental-modules ./src/index.js",
     "dev": "env DEBUG=tinfoil* nodemon node --experimental-modules ./src/index.js ",
+    "test": "npx playwright test",
+    "test:ui": "npx playwright test --ui",
     "d:publish:no:cache": "docker build --pull --no-cache --tag vinicioslc/tinfoil-hat:latest . && docker push vinicioslc/tinfoil-hat",
     "d:publish": "docker build . && docker tag tinfoil-hat:latest vinicioslc/tinfoil-hat && docker push vinicioslc/tinfoil-hat"
   },
@@ -15,7 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "debug": "^4.3.4",
-    "dotenv": "^16.0.3",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "express-basic-auth": "^1.2.1",
     "express-static": "^1.2.6",
@@ -30,6 +31,7 @@
     "urlencode": "^1.1.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.32.3",
     "nodemon": "^2.0.20"
   },
   "repository": {
@@ -41,7 +43,7 @@
   },
   "homepage": "https://github.com/vinicioslc/tinfoil-hat#readme",
   "volta": {
-    "node": "14.21.3",
+    "node": "16.20.2",
     "npm": "9.8.1"
   }
 }

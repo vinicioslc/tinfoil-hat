@@ -8,7 +8,7 @@ import { dirname } from "path";
 import urlencode from "urlencode";
 import url from "url";
 
-import { nspFullDirPath, jsonTemplatePath } from "./envs.js";
+import { romsDirPath, jsonTemplatePath } from "./envs.js";
 import debug from "./debug.js";
 
 // File Exist returns true
@@ -64,7 +64,7 @@ const addUrlEncodedFileInfo = (filePath) => {
 };
 const addFileInfoToPath = async (filePath) => {
   const status = fs.statSync(
-    path.join(nspFullDirPath, filePath.replace(/^\.\.\//gim, ""))
+    path.join(romsDirPath, filePath.replace(/^\.\.\//gim, ""))
   );
   return { url: filePath, size: status.size };
 }; //  Shop template file to use

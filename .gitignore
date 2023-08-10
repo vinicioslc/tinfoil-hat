@@ -134,3 +134,9 @@ dist
 
 #mantain gitkeep folders
 !.gitkeep
+/test-results/
+/playwright-report/
+/playwright/.cache/
+
+# test values
+/test/project/.env

@@ -2,7 +2,7 @@ import path from "path";
 import FastGlob from "fast-glob";
 
 import debug from "./debug.js";
-import { nspFullDirPath, welcomeMessage } from "./envs.js";
+import { romsDirPath, welcomeMessage } from "./envs.js";
 import {
   addFileInfoToPath,
   addRelativeStartPath,
@@ -19,19 +19,19 @@ const validExtensions = ["nsp", "nsz", "xci", "zip"].map(
 export default async () => {
   // create files info to be showned by the file index package
   try {
-    await createIfNoExists(path.join(nspFullDirPath, "shop.json"));
-    await createIfNoExists(path.join(nspFullDirPath, "shop.tfl"));
+    await createIfNoExists(path.join(romsDirPath, "shop.json"));
+    await createIfNoExists(path.join(romsDirPath, "shop.tfl"));
   } catch (error) {}
   const jsonTemplate = getJsonTemplateFile();
   let files = await FastGlob(validExtensions, {
-    cwd: nspFullDirPath, // use path to resolve games
+    cwd: romsDirPath, // use path to resolve games
     dot: false, // ignore dot starting path
     onlyFiles: true, // only list files
     braceExpansion: false,
     absolute: false, // absolute path
   });
   let directories = await FastGlob(["**"], {
-    cwd: nspFullDirPath, // use path to resolve games
+    cwd: romsDirPath, // use path to resolve games
     dot: false, // ignore dot starting path
     onlyFiles: true, // only list files
     braceExpansion: false,

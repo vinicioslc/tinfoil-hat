@@ -1,0 +1,11 @@
+{
+  "name": "test-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "../../src/index.js",
+  "scripts": {
+    "start": "node --experimental-modules ../../src/index.js",
+    "dev": "env DEBUG=tinfoil* nodemon node --experimental-modules ../../src/index.js"
+  },
+  "license": "MIT"
+}
