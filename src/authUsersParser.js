@@ -1,6 +1,6 @@
 import _ from "lodash";
 
-import { authUsers } from "./envs.js";
+import { authUsers } from "./helpers/envs.js";
 import debug from "./debug.js";
 
 function parseUserString(authString) {

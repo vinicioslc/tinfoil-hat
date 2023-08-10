@@ -9,7 +9,7 @@ import urlencode from "urlencode";
 import url from "url";
 
 import { romsDirPath, jsonTemplatePath } from "./envs.js";
-import debug from "./debug.js";
+import debug from "../debug.js";
 
 // File Exist returns true
 // dont use exists which is no more!

@@ -3,9 +3,10 @@ import serveIndex from "serve-index";
 import path from "path";
 import expressBasicAuth from "express-basic-auth";
 import shopFileBuilder from "./shop-file-builder.js";
-import { romsDirPath, appPort, unauthorizedMessage } from "./envs.js";
+import { romsDirPath, appPort, unauthorizedMessage } from "./helpers/envs.js";
 import { afterStartFunction } from "./afterStartFunction.js";
 import { getUsersFromEnv } from "./authUsersParser.js";
+import FTPClient from "./modules/ftp-client.js";
 
 const expressApp = express();
 // Serve static files and interface
@@ -15,7 +16,7 @@ if (BasicAuthUsers) {
     expressBasicAuth({
       users: BasicAuthUsers,
       unauthorizedResponse: unauthorizedMessage,
-      challenge: true
+      challenge: true,
     })
   );
 }
@@ -35,5 +36,6 @@ expressApp.use(
   })
 );
 const server = expressApp.listen(appPort, afterStartFunction(appPort));
-
+const sync = new FTPClient();
+await sync.start();
 export default server;

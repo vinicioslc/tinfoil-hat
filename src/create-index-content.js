@@ -2,7 +2,7 @@ import path from "path";
 import FastGlob from "fast-glob";
 
 import debug from "./debug.js";
-import { romsDirPath, welcomeMessage } from "./envs.js";
+import { romsDirPath, welcomeMessage } from "./helpers/envs.js";
 import {
   addFileInfoToPath,
   addRelativeStartPath,
@@ -10,7 +10,7 @@ import {
   getJsonTemplateFile,
   createIfNoExists,
   addUrlEncodedFileInfo as encodeURL,
-} from "./helpers.js";
+} from "./helpers/helpers.js";
 
 const validExtensions = ["nsp", "nsz", "xci", "zip"].map(
   (value) => `**.${value.replace(".", "")}`

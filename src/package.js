@@ -1,7 +1,7 @@
 import fs from "fs";
 import JSON5 from "json5";
 import path from "path";
-import { fileDirName } from "./helpers.js";
+import { fileDirName } from "./helpers/helpers.js";
 
 path;
 const content = JSON5.parse(

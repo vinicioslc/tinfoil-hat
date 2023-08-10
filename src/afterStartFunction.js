@@ -1,6 +1,6 @@
 import localIpAddress from "local-ip-address";
 import debug from "./debug.js";
-import { romsDirPath } from "./envs.js";
+import { romsDirPath } from "./helpers/envs.js";
 import { publicIpv4 } from "public-ip";
 import buildJsonContent from "./create-index-content.js";
 import pkg from "./package.js";
