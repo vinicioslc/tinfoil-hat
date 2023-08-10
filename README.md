@@ -1,15 +1,19 @@
 # 📂 Tinfoil-Hat Server
+
+[![Playwright Tests](https://github.com/vinicioslc/tinfoil-hat/actions/workflows/playwright.yml/badge.svg)](https://github.com/vinicioslc/tinfoil-hat/actions/workflows/playwright.yml)
+
 > A Docker based Tinfoil Server - you could download code and `npm run dev` as well...
 
 ## - Your NSP, XCI and other game files served locally
 
 With this server Tinfoil users can serve all .NSP .XCI files in local network with docker easily without file count limits !
- 
+
 ### Key Features
-  - Instant index refresh (no need waiting refresh interval, just put games into folder and reload window)
-  - Multi user Authentication through user:pass,user2:pass2 ENV supplied as docker env
-  - Customize Hello message and not logged in message throught ENVs 
-  - 96% less RAM consumption, compared to the NUT solution !!! (in some cases see below!)
+
+- Instant index refresh (no need waiting refresh interval, just put games into folder and reload window)
+- Multi user Authentication through user:pass,user2:pass2 ENV supplied as docker env
+- Customize Hello message and not logged in message throught ENVs
+- 96% less RAM consumption, compared to the NUT solution !!! (in some cases see below!)
 <div align="center">
  <br>
 
@@ -39,7 +43,7 @@ With this server Tinfoil users can serve all .NSP .XCI files in local network wi
 
 ## How works
 
-- Serve shop.json(for user check) and shop.tfl(for tinfoil) dynamically as you place new games and files on foilder (search files and folders at every refresh) this ensures a realtime Tinfoil listing files (you need reopen tinfoil to fully refresh index) 
+- Serve shop.json(for user check) and shop.tfl(for tinfoil) dynamically as you place new games and files on foilder (search files and folders at every refresh) this ensures a realtime Tinfoil listing files (you need reopen tinfoil to fully refresh index)
 
 # Docker-Compose Sample Using Password
 
@@ -93,6 +97,7 @@ services:
 ```
 
 ## We want
+
 - [ ] Organize and rename app listing by GAMEID
 - [ ] Have a gui to override and customize TITLEID info on server-side json db
 - [ ] Allow download torrent files from magnet link
