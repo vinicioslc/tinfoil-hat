@@ -4,8 +4,7 @@ LABEL com.centurylinklabs.watchtower.enable=true
 ENV DEBUG=tinfoil*
 ENV ROMS_DIR_FULLPATH=/games
 ENV TINFOIL_HAT_PORT=80
-ENV BASIC_AUTH=
-ENV UNAUTHORIZED_MSG=
+ENV NX_PORTS=5000
 
 # The container will run at root level of container
 # to avoid long syntax when mounting /games folder

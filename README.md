@@ -68,6 +68,13 @@ services:
       - AUTH_USERS=tinfoiler:password,othertinfoiler:otherpassword
       - UNAUTHORIZED_MSG='No tricks and treats for you!!'
       - WELCOME_MSG='The Server Just Works!!'
+      - NX_PORTS=5000 # ftp port used to sync saves
+      # - UNAUTHORIZED_MSG= # message shown when credentials are incorrect
+      # - NX_IPS= # devices ips that will be saves sync separated by ";"
+      # - SAVE_SYNC_INTERVAL= # interval in millisseconds that will try sync saves < 5000 will stop sync
+      # - NX_USER= # ftpd user
+      # - NX_PASSWORD= # ftpd password
+
     ports:
       # Change to any port of your machine (99 in that case) (dont change the :80 !!!)
       - 99:80
