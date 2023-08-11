@@ -1,6 +1,7 @@
 # 📂 Tinfoil-Hat Server
 
 [![Playwright Tests](https://github.com/vinicioslc/tinfoil-hat/actions/workflows/playwright.yml/badge.svg)](https://github.com/vinicioslc/tinfoil-hat/actions/workflows/playwright.yml)
+[![Docker Publish](https://github.com/vinicioslc/tinfoil-hat/actions/workflows/docker.yml/badge.svg)](https://github.com/vinicioslc/tinfoil-hat/actions/workflows/docker.yml)
 
 > A Docker based Tinfoil Server - you could download code and `npm run dev` as well...
 
@@ -14,6 +15,7 @@ With this server Tinfoil users can serve all .NSP .XCI files in local network wi
 - Multi user Authentication through user:pass,user2:pass2 ENV supplied as docker env
 - Customize Hello message and not logged in message throught ENVs
 - 96% less RAM consumption, compared to the NUT solution !!! (in some cases see below!)
+
 <div align="center">
  <br>
 
@@ -96,6 +98,33 @@ services:
       - 9008:8080
 ```
 
+## Automatic Saves Backup using FTP
+
+> How it works :
+
+1. First you need backup your saves using Tinfoil or JKSV the folders path supported are `/JKSV` and `/switch/tinfoil/saves`
+
+   > Both folders will be downloaded to `/<games_folder>/Saves/JKSV` and `/<games_folder>/Saves/Tinfoil` this will ensure these folders will be found by tinfoil app.
+
+2. You need to serve your Switch files at network using ftpd
+
+   ##### Setup sys-ftpd on the Switch
+
+   - Install sys-ftpd - available as sys ftpd light in the Homebrew Menu
+   - Install ovl-sysmodule from Homebrew Menu - optional but recommended
+
+   Follow the sys-ftpd configuration to set up the user, password and port used for the FTP connection. Note these for Ownfoil configuration, as well as the IP of your Switch. If you installed ovl-sysmodule you can toggle on/off the FTP server using the Tesla overlay.
+
+   It is recommended to test the FTP connection at least once with a regular FTP Client to make sure everything is working as expected on the switch.
+
+3. To start sync saves inside Tinfoil app on switch connect and list the server homebrews to the server recongnize the switch IP and start sync
+
+   - This will allow the server "capture" the switch device IP and start to syncing it
+
+4. After first sync the server will fetch periodically using sync interval.
+
+![Save Sync Diagram](/.diagrams/save%20sync.drawio.png)
+
 ## We want
 
 - [ ] Organize and rename app listing by GAMEID
@@ -104,7 +133,7 @@ services:
 
 ## Images with Tinfoil
 
-#### setup connection
+#### Setup Connection
 
 ![image](https://user-images.githubusercontent.com/10997022/214877049-8d369eb5-7440-4b22-9763-96da1c277f41.png)
 
@@ -117,11 +146,3 @@ services:
 - `express` | Serve Dynamically shop(.json|.tfl) with updated content at every refresh and serve files statically
 - `serve-index` | To serve a rich listing of files (in case only shop.json shop.tfl for tinfoil)
 - `json5` | To parse custom shop_template.jsonc (you can define on it custom content like a welcome message !!!)
-
-## Saves FTPD sync
-
-The server will comunicate with the NSW that have connected throught tinfoil for list games in some time on past.
-
-> How sync workflow works :
-
-![Save Sync Diagram](/.diagrams/save%20sync.drawio.png)
