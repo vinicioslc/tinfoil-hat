@@ -117,3 +117,11 @@ services:
 - `express` | Serve Dynamically shop(.json|.tfl) with updated content at every refresh and serve files statically
 - `serve-index` | To serve a rich listing of files (in case only shop.json shop.tfl for tinfoil)
 - `json5` | To parse custom shop_template.jsonc (you can define on it custom content like a welcome message !!!)
+
+## Saves FTPD sync
+
+The server will comunicate with the NSW that have connected throught tinfoil for list games in some time on past.
+
+> How sync workflow works :
+
+![Save Sync Diagram](/.diagrams/save%20sync.drawio.png)
