@@ -14,7 +14,7 @@ With this server Tinfoil users can serve all .NSP .XCI files in local network wi
 - Instant index refresh (no need waiting refresh interval, just put games into folder and reload window)
 - Multi user Authentication through user:pass,user2:pass2 ENV supplied as docker env
 - Customize Hello message and not logged in message throught ENVs
-- 96% less RAM consumption, compared to the NUT solution !!! (in some cases see below!)
+- 96.29% less RAM consumption (1.5gb to 57mb), compared to common NUT solution !!! (in real cases see below!)
 
 <div align="center">
  <br>
