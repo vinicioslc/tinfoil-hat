@@ -6,9 +6,7 @@ import { romsDirPath, welcomeMessage } from "./helpers/envs.js";
 import {
   addFileInfoToPath,
   addRelativeStartPath,
-  addUrlEncodedFileInfo as encodeFilePath,
   getJsonTemplateFile,
-  createIfNoExists,
   addUrlEncodedFileInfo as encodeURL,
 } from "./helpers/helpers.js";
 
@@ -17,11 +15,7 @@ const validExtensions = ["nsp", "nsz", "xci", "zip"].map(
 );
 
 export default async () => {
-  // create files info to be showned by the file index package
-  try {
-    await createIfNoExists(path.join(romsDirPath, "shop.json"));
-    await createIfNoExists(path.join(romsDirPath, "shop.tfl"));
-  } catch (error) {}
+
   const jsonTemplate = getJsonTemplateFile();
   let files = await FastGlob(validExtensions, {
     cwd: romsDirPath, // use path to resolve games

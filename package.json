@@ -10,7 +10,8 @@
     "test": "npx playwright test",
     "test:ui": "npx playwright test --ui",
     "d:publish:no:cache": "docker build --pull --no-cache --tag vinicioslc/tinfoil-hat:latest . && docker push vinicioslc/tinfoil-hat",
-    "d:publish": "docker build . && docker tag tinfoil-hat:latest vinicioslc/tinfoil-hat && docker push vinicioslc/tinfoil-hat"
+    "d:publish": "docker build . && docker tag tinfoil-hat:latest vinicioslc/tinfoil-hat && docker push vinicioslc/tinfoil-hat",
+    "preinstall": "npx playwright install"
   },
   "author": "vinicioslc",
   "license": "ISC",
@@ -34,7 +35,8 @@
     "urlencode": "^1.1.0"
   },
   "devDependencies": {
-    "@playwright/test": "^1.32.3",
+    "@playwright/test": "^1.45.1",
+    "@types/node": "^20.14.10",
     "nodemon": "^2.0.20"
   },
   "repository": {

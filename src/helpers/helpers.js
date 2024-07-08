@@ -9,20 +9,6 @@ import urlencode from "urlencode";
 import url from "url";
 
 import { romsDirPath, jsonTemplatePath } from "./envs.js";
-import debug from "../debug.js";
-
-// File Exist returns true
-// dont use exists which is no more!
-const createIfNoExists = async (fileNamePath) => {
-  try {
-    // try to read file
-    await readFile(fileNamePath);
-  } catch (error) {
-    // create empty file, because it wasn't found
-    debug.file("created index file: %o", fileNamePath);
-    await writeFile(fileNamePath, "");
-  }
-};
 
 const addRelativeStartPath = (path) => {
   path.url = "../" + path.url;
@@ -84,5 +70,4 @@ export {
   addRelativeStartPath,
   getJsonTemplateFile,
   fileDirName,
-  createIfNoExists,
 };
