@@ -3,6 +3,8 @@
 [![Playwright Tests](https://github.com/vinicioslc/tinfoil-hat/actions/workflows/playwright.yml/badge.svg)](https://github.com/vinicioslc/tinfoil-hat/actions/workflows/playwright.yml)
 [![Docker Publish](https://github.com/vinicioslc/tinfoil-hat/actions/workflows/docker.yml/badge.svg)](https://github.com/vinicioslc/tinfoil-hat/actions/workflows/docker.yml)
 
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/K3K424BR8)
+
 > A Docker based Tinfoil Server - you could download code and `npm run dev` as well...
 
 ## - Your NSP, XCI and other game files served locally
@@ -20,8 +22,6 @@ With this server Tinfoil users can serve all .NSP .XCI files in local network wi
  <br>
 
 [![RAM Cansumption report from reddit users](https://user-images.githubusercontent.com/10997022/218286171-fbd4e5b3-94e3-438f-badb-788c1f55af76.png)](https://www.reddit.com/r/SwitchPirates/comments/10ltfxe/tinfoilhat_a_open_source_nodejs_docker_app_to/)
-
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/K3K424BR8)
 
 ![giphy tinfoilers saying "we dont even understand how to play this game"](https://media.giphy.com/media/3o6Zt4uuhvA0qmUIgg/giphy.gif)
 
