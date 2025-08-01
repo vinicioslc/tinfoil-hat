@@ -8,11 +8,18 @@ import { afterStartFunction } from "./afterStartFunction.js";
 import { getUsersFromEnv } from "./authUsersParser.js";
 import SaveSyncManager from "./modules/ftp-client.js";
 import staticIndexHTML from "./staticIndexHTML.js";
-
+import helmet from "helmet"; // Import helmet
+import csurf from "csurf"; // Import csurf
 
 const saveSyncManager = new SaveSyncManager();
 const expressApp = express();
-// Serve static files and interface
+
+// Use helmet to disable X-Powered-By header
+expressApp.use(helmet());
+
+// Use csurf for CSRF protection
+expressApp.use(csurf());
+
 const BasicAuthUsers = getUsersFromEnv();
 if (BasicAuthUsers) {
   expressApp.use(
