@@ -14,7 +14,16 @@ const validExtensions = ["nsp", "nsz", "xci", "zip"].map(
   (value) => `**.${value.replace(".", "")}`
 );
 
+// cache simples em memoria: invalida apos CACHE_TTL_MS
+let cache = { at: 0, data: null };
+const CACHE_TTL_MS = 2000;
+
 export default async () => {
+  const now = Date.now();
+  if (cache.data && now - cache.at < CACHE_TTL_MS) {
+    debug.log("index served from cache");
+    return cache.data;
+  }
 
   const jsonTemplate = getJsonTemplateFile();
   let files = await FastGlob(validExtensions, {
@@ -54,8 +63,10 @@ export default async () => {
       return file.url;
     });
 
-  return Object.assign(jsonTemplate, {
+  const result = Object.assign(jsonTemplate, {
     files,
     directories,
   });
+  cache = { at: now, data: result };
+  return result;
 };

@@ -21,11 +21,11 @@ const addRelativeStartPath = (path) => {
  * @param {any} value
  * @returns
  */
-function stringNormalizer(value) {
+export function stringNormalizer(value) {
   const replacer = [
-    [/\[/gim, "%5B"],
+    [/[[]/gim, "%5B"],
     [/\]/gim, "%5D"],
-    [/\(/gim, "%28"],
+    [/[(]/gim, "%28"],
     [/\)/gim, "%29"],
     [/\=/gim, "%3D"],
     [/\+/gim, "%2B"],

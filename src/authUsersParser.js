@@ -1,36 +1,53 @@
-import _ from "lodash";
-
 import { authUsers } from "./helpers/envs.js";
 import debug from "./debug.js";
 
+/**
+ * Separa "user:pass" em { name, pass }.
+ * Usa o PRIMEIRO ":" como delimitador — permite senhas contendo ":".
+ * Espacos ao redor sao ignorados.
+ */
 function parseUserString(authString) {
-  return { name: authString[0].trim(), pass: authString[1].trim() };
+  const idx = authString.indexOf(":");
+  if (idx === -1) return null;
+  const name = authString.slice(0, idx).trim();
+  if (!name) return null; // user vazio e invalido
+  return {
+    name,
+    pass: authString.slice(idx + 1).trim(),
+  };
+}
+
+/**
+ * Funcao pura: converte a string AUTH_USERS em objeto { user: pass }.
+ * Formatos aceitos:
+ *   "user:pass"
+ *   "user:pass,user2:pass2"
+ * Retorna null quando a string e vazia/invalida.
+ */
+export function parseAuthUsers(authString) {
+  if (!authString || typeof authString !== "string") return null;
+  if (!authString.includes(":")) return null;
+
+  const entries = authString
+    .split(",")
+    .map((userString) => parseUserString(userString))
+    .filter(Boolean);
+
+  if (!entries.length) return null;
+
+  return entries.reduce((acc, user) => {
+    acc[user.name] = user.pass;
+    return acc;
+  }, {});
 }
 
 export function getUsersFromEnv() {
-  let parsedUsers = null;
-  if (!_.isNil(authUsers?.length)) {
-    if (authUsers.includes(",") && authUsers.includes(":")) {
-      if (authUsers.split(",").length > 0) {
-        parsedUsers = authUsers
-          .split(",")
-          .map((userString) => userString.split(":"))
-          .map(parseUserString);
-      }
-    } else if (authUsers.includes(":")) {
-      parsedUsers = [parseUserString(authUsers.split(":"))];
-    }
-
+  const parsedUsers = parseAuthUsers(authUsers);
+  if (parsedUsers) {
     debug.log(
       "Auth Users Loaded: %O",
-      parsedUsers.map((value) => value.name).join(",")
+      Object.keys(parsedUsers).join(",")
     );
-    if (parsedUsers?.length) {
-      // transform this [ { name: admin, pass: 123 } ] to this -> { admin: 123 }
-      parsedUsers = parsedUsers.reduce(function (accumulator, user) {
-        return _.merge(accumulator ?? {}, { [user.name]: user.pass });
-      }, {});
-    }
   }
   return parsedUsers;
 }

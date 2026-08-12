@@ -24,6 +24,8 @@ jobs:
           cp -f ./.env.example ./test/project/.env
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
+      - name: Run unit tests
+        run: node --test test/unit/*.spec.js
       - name: Run Playwright tests
         run: npx playwright test
       - uses: actions/upload-artifact@v3

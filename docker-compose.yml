@@ -30,8 +30,8 @@ services:
     volumes:
       # path to your custom shop_template.jsonc used to show message on success or add authentication
       - ./shop_template.jsonc:/shop_template.jsonc
-      # path to your directory with games
-      - c:/Users/vinic/Downloads/FDM/Switch/:/games/
+      # path to your directory with games (mount your own path here)
+      - /path/to/your/switch/games/:/games/
   # to enable auto update of tinfoil-hat container
   tinfoilhat-updater:
     image: containrrr/watchtower:latest

@@ -12,12 +12,15 @@ export default class SaveSyncManager {
   constructor() {
     this.intervalMS = 5000;
     if (process?.env?.SAVE_SYNC_INTERVAL) {
-      this.intervalMS = process.env.SAVE_SYNC_INTERVAL;
+      this.intervalMS = parseInt(process.env.SAVE_SYNC_INTERVAL, 10);
     }
     if (process?.env?.NX_IPS && process.env.NX_IPS.includes(";")) {
-      this.DEVICES_IP_LIST = process.env.NX_IPS.split(";")[0];
+      this.DEVICES_IP_LIST = process.env.NX_IPS
+        .split(";")
+        .map((ip) => ip.trim())
+        .filter(Boolean);
     } else if (process?.env?.NX_IPS) {
-      this.DEVICES_IP_LIST.push(process.env.NX_IPS);
+      this.DEVICES_IP_LIST.push(process.env.NX_IPS.trim());
     }
     debug.log("Save sync manager initialized", this.DEVICES_IP_LIST);
   }
@@ -61,6 +64,8 @@ export default class SaveSyncManager {
   ensureIntervalExists() {
     if (!this.checkInterval && this.intervalMS >= 5000) {
       this.checkInterval = setInterval(() => this.start(), this.intervalMS);
+      // nao manter o event loop vivo apenas por causa do timer de sync
+      this.checkInterval.unref();
       debug.log(
         "SCHEDULED NEXT EXECUTION IN",
         this.intervalMS / 1000,
